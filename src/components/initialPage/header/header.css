@@ -1,0 +1,33 @@
+.headerMain p{
+    color: #bebebe;
+}
+.headerMain{
+    background-color: #FFF;
+    border-bottom: #bebebe;
+    border-radius: 20px;
+}
+
+.mesAtual{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.saldoAtual{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.despesasReceitas{
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+.align{
+    display: inline-block;
+}

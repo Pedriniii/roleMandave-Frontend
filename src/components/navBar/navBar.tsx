@@ -37,7 +37,7 @@ function NavigationBar() {
         onClick={() => handleItemClick('addPagamento')}
       >
         <i className="fas fa-user"></i>
-        <span>Adcionar Pagamento</span>
+        <span> + Pagamentos</span>
       </div>
     </nav>
   );
