@@ -1,0 +1,39 @@
+/* NavigationBar.css */
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px #bebebe;
+    background-color: #FFF;
+    color: #bebebe;
+    font-size: 14px;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  .navbar-item {
+    text-align: center;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .navbar-item i {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+  
+  .navbar-item:hover {
+    color: #bd24ff;
+  }
+  
+  .navbar-item:hover span {
+    font-weight: bold;
+  }
+  
+  .navbar-item-active {
+    color: #bd24ff;
+    font-weight: bold;
+  }
