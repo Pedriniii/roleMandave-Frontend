@@ -1,5 +1,6 @@
 // NavigationBar.tsx
 import React, { useState } from 'react';
+import { Outlet, Link } from "react-router-dom";
 import './NavigationBar.css';
 
 function NavigationBar() {
@@ -16,21 +17,20 @@ function NavigationBar() {
         onClick={() => handleItemClick('home')}
       >
         <i className="fas fa-home"></i>
-        <span>Início</span>
+        <Link to="/" className={"link"}>Inicio</Link>
       </div>
       <div
         className={`navbar-item ${activeItem === 'transacao' ? 'navbar-item-active' : ''}`}
         onClick={() => handleItemClick('transacao')}
       >
-        <i></i>
-        <span>Transações</span>
+        <Link to="/transactions" className={"link"}>Transações</Link>
       </div>
       <div
         className={`navbar-item ${activeItem === 'orcamento' ? 'navbar-item-active' : ''}`}
         onClick={() => handleItemClick('orcamento')}
       >
         <i className="fas fa-user"></i>
-        <span>Orçamento</span>
+        <Link to="/budgets" className={"link"}>Orçamentos</Link>
       </div>
       {/* <div
         className={`navbar-item ${activeItem === 'addPagamento' ? 'navbar-item-active' : ''}`}

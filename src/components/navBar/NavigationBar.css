@@ -30,7 +30,7 @@
     color: #bd24ff;
   }
   
-  .navbar-item:hover span {
+  .navbar-item.link :hover {
     font-weight: bold;
   }
   
@@ -38,3 +38,18 @@
     color: #bd24ff;
     font-weight: bold;
   }
+
+  .link{
+    color: #bebebe;
+    text-decoration: none;
+  }
+  .navbar-item-active .link,
+  .link:hover {
+    color: #bd24ff;
+    font-weight: bold;
+  }
+  
+  .navbar-item-active .link:not(:hover) {
+    font-weight: bold;
+  }
+  

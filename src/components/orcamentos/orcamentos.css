@@ -1,0 +1,83 @@
+/* Estilos para o formulário */
+.container {
+  padding-top: 50px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  font-size: 18px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  color: #bd24ff;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background-color: #e4e4e4;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus,
+form select:focus {
+  outline: none;
+}
+
+/* Estilos para o botão */
+.btn {
+  background-color: #bd24ff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #8e19ff;
+}
+
+/* Estilos para a tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #bebebe;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #bd24ff;
+  color: #fff;
+  font-weight: bold;
+}
+/* Adicione estas classes no seu arquivo CSS */
+.table-row-even {
+  background-color: #e4e4e4;
+}
+
+.table-row-odd {
+  background-color: transparent;
+}

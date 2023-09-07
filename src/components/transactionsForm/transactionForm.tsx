@@ -35,8 +35,36 @@ const TransactionForm: React.FC = () => {
             <option value="Dinheiro">Dinheiro</option>
           </select>
         </div>
-        <button type="submit" className={"btn"}>Adicionar</button>
+        <button type="submit" className={"btn"}>Adicionar Pagamento</button>
       </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th style={{ width: "30%" }}>Pessoa</th>
+            <th style={{ width: "15%" }}>Total pago</th>
+            <th style={{ width: "10%" }}>Total a pagar</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <td>Pedrinsky</td>
+              <td>800</td>
+              <td>200</td>
+            </tr>
+            <tr>
+              <td>Gordine</td>
+              <td>0</td>
+              <td>1000</td>
+            </tr>
+            <tr>
+              <td>Gadac</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+        </tbody>
+      </table>
     </div>
   );
 };
