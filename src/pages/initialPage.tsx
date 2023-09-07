@@ -1,5 +1,6 @@
 import Header from "../components/initialPage/header/header";
 import Body from "../components/initialPage/body/body";
+import Recebimentos from "../components/initialPage/bottom/bottom";
 
 function InitialPage() {
   return (
@@ -7,10 +8,16 @@ function InitialPage() {
       <Header />
       <br /><br />
       <h3>Despesas por categoria</h3>
-      <br /><br />
+      <br />
       <Body />
+      <br /><br />
+      <h3>Recebimentos</h3>
+      <br />
+      <Recebimentos />
     </div>
   );
 }
 
 export default InitialPage;
+
+
