@@ -1,6 +1,6 @@
 // NavigationBar.tsx
-import React, { useState } from 'react';
-import { Outlet, Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link } from "react-router-dom";
 import './NavigationBar.css';
 
 function NavigationBar() {
