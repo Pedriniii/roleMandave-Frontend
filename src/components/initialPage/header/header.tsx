@@ -1,9 +1,17 @@
 import  './header.css'
+import { getMonth, format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 function Header (){
+    const currentMonth = getMonth(new Date());
+    let monthName = format(new Date(0, currentMonth), 'MMMM', { locale: ptBR });
+
+    
+    monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+
     return(
     <div className={"headerMain"}>
-        <h3 className={"mesAtual"}>Mês Atual</h3>
+        <h3 className={"mesAtual"}>{monthName}</h3>
 
         <div className={"saldoAtual"}>
             <p>Saldo em conta</p>
