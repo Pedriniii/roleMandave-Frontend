@@ -7,7 +7,7 @@ import './body.css'
 function Body() {
 
   const data = {
-    labels: [`Transporte: ${25}`, `Aluguel: ${30}`, `Alimentação: ${35}`, `Outros: ${10}`],
+    labels: [`Transporte`, `Aluguel`, `Alimentação`, `Outros`],
     datasets: [
       {
         data: [25, 30, 35, 10],

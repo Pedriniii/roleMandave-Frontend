@@ -32,13 +32,13 @@ function NavigationBar() {
         <i className="fas fa-user"></i>
         <span>Orçamento</span>
       </div>
-      <div
+      {/* <div
         className={`navbar-item ${activeItem === 'addPagamento' ? 'navbar-item-active' : ''}`}
         onClick={() => handleItemClick('addPagamento')}
       >
         <i className="fas fa-user"></i>
         <span> + Pagamentos</span>
-      </div>
+      </div> */}
     </nav>
   );
 }

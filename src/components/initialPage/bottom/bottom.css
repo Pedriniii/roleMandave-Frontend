@@ -1,0 +1,24 @@
+.bottomMain{
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.containerPaymants{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px;
+    border-bottom: dotted 1px #bebebe;
+}
+
+.paymants{
+    display: flex;
+    align-items: center;
+}
+
+.paymants div p{
+    color: #25c47a;
+}
