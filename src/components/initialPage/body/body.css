@@ -1,4 +1,6 @@
 .graph {
+  display: flex;
+  justify-content: center;
   background-color: #fff;
   max-width: 300;
   max-height: 300px;
