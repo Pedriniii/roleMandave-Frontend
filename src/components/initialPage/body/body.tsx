@@ -1,30 +1,24 @@
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
-import './body.css'
+import React from 'react';
+import './body.css'; // Estilo CSS para o calendário
 
-
-
-function Body() {
-
-  const data = {
-    labels: [`Transporte`, `Aluguel`, `Alimentação`, `Outros`],
-    datasets: [
-      {
-        data: [25, 30, 35, 10],
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
-        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
-      },
-    ],
-  };
-
-
-  ChartJS.register(ArcElement, Tooltip, Legend);
+const MonthCalendar = () => {
+  const currentMonth = new Date().getMonth(); // Mês atual (0 a 11)
+  const monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
   return (
-    <div className="graph">
-      <Doughnut data={data} updateMode={"active"}/>
+    <div className="month-calendar">
+      {monthNames.map((month, index) => {
+        const isPastMonth = index < currentMonth;
+        const isCurrentMonth = index == currentMonth;
+        const classNames = isPastMonth ? 'month past-month' : 'month' && isCurrentMonth ? 'month current-month' : 'month';
+        return (
+          <div key={month} className={classNames}>
+            {month}
+          </div>
+        );
+      })}
     </div>
   );
-}
+};
 
-export default Body;
+export default MonthCalendar;

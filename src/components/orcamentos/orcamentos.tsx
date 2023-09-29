@@ -1,102 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './orcamentos.css'
+import FormularioOrcamento from './formularioOrcamento';
+
+
+interface Orcamento {
+  descricao: string;
+  total: number;
+  valor: number;
+  unidade_de_medida: string;
+  qtd: number;
+}
 
 function Orcamentos() {
-  const [description, setDescription] = useState("");
-  const [unitOfMeasure, setUnitOfMeasure] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [price, setPrice] = useState("");
-  const [items, setItems] = useState<
-    Array<{
-      description: string;
-      unitOfMeasure: string;
-      quantity: number;
-      price: number;
-    }>
-  >([]);
+  const [selectOrcamento, setSelectOrcamento] = useState<Orcamento[]>([]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (description && unitOfMeasure && quantity && price) {
-      const newItem = {
-        description,
-        unitOfMeasure,
-        quantity: parseFloat(quantity),
-        price: parseFloat(price),
-      };
-      setItems([...items, newItem]);
-      setDescription("");
-      setUnitOfMeasure("");
-      setQuantity("");
-      setPrice("");
-    }
-  };
+  useEffect(() => {
+    // Faz a requisição para o servidor
+    axios.get('http://localhost:8080/listarOrcamento')
+      .then((response) => {
+        console.log('Resposta da requisição:', response.data);
+  
+        // Verifica se a resposta possui dados e são um array
+        if (Array.isArray(response.data.selectOrcamento)) {
+          setSelectOrcamento(response.data.selectOrcamento);
+        } else {
+          console.error('Os dados recebidos não são um array:', response.data.selectOrcamento);
+        }
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar os dados:', error);
+      });
+  }, []); // Executa apenas uma vez quando o componente monta
+  
+  
+
+  // Verifica se selectOrcamento é um array antes de fazer o map
+  const orcamentoRows = Array.isArray(selectOrcamento) ?
+    selectOrcamento.map((orcamento: Orcamento, index: number) => (
+      <tr key={index}>
+        <td>{orcamento.descricao}</td>
+        <td>{orcamento.valor}</td>
+        <td>{orcamento.total}</td>
+        <td>{orcamento.unidade_de_medida}</td>
+        <td>{orcamento.qtd}</td>
+      </tr>
+    )) :
+    null;
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="description">Descrição</label>
-        <input
-          type="text"
-          id="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-
-        <label htmlFor="unitOfMeasure">Unidade de Medida</label>
-        <input
-          type="text"
-          id="unitOfMeasure"
-          value={unitOfMeasure}
-          onChange={(e) => setUnitOfMeasure(e.target.value)}
-          required
-        />
-
-        <label htmlFor="quantity">QTD</label>
-        <input
-          type="number"
-          id="quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-          required
-        />
-
-        <label htmlFor="price">Preço</label>
-        <input
-          type="number"
-          id="price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          required
-        />
-
-        <button type="submit" className="btn">
-          Adicionar Item
-        </button>
-      </form>
-
+    <div>
+      <FormularioOrcamento />
       <table>
         <thead>
           <tr>
             <th style={{ width: "30%" }}>Descrição</th>
-            <th style={{ width: "15%" }}>Total</th>
             <th style={{ width: "15%" }}>Preço</th>
+            <th style={{ width: "15%" }}>Total</th>
             <th style={{ width: "10%" }}>UN</th>
             <th style={{ width: "10%" }}>QTD</th>
           </tr>
         </thead>
-
         <tbody>
-          {items.map((item, index) => (
-            <tr key={index}>
-              <td>{item.description}</td>
-              <td>{item.unitOfMeasure}</td>
-              <td>{item.quantity}</td>
-              <td>{item.price}</td>
-              <td>{(item.quantity * item.price).toFixed(2)}</td>
-            </tr>
-          ))}
+          {orcamentoRows}
         </tbody>
       </table>
     </div>

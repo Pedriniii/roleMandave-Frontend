@@ -1,70 +1,109 @@
-import React from 'react';
-import './transactionForm.css'
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
+import './transactionForm.css';
 
+interface Pessoa {
+  id: number;
+  nome: string;
+}
 
 const TransactionForm: React.FC = () => {
+  const [formData, setFormData] = useState({
+    id_pessoa: '',
+    valor_pago: '',
+    data_recebimento: '',
+  });
+
+  const [pessoas, setPessoas] = useState<Pessoa[]>([]);
+
+  useEffect(() => {
+    Axios.get('http://localhost:8080/listarPessoas')
+      .then((response) => {
+        if (Array.isArray(response.data.selectPessoa)) {
+          setPessoas(response.data.selectPessoa);
+        } else {
+          console.error('Os dados recebidos não são um array:', response.data.selectPessoa);
+        }
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar os dados:', error);
+      });
+  }, []);
+
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      await Axios.post('http://localhost:8080/cadastrarRecebimento', formData);
+      console.log('Recebimento cadastrado com sucesso!');
+    } catch (error) {
+      console.error('Erro ao cadastrar o recebimento:', error);
+    }
+  };
+
   return (
-    <div className={"container"}>
+    <div>
       <h2>Adicionar Transação</h2>
-      <form>
-          <div className={"form-group"}>
-          <label htmlFor="quemPagou">Quem pagou:</label>
-          <select className="form-control" id="porOndePagou">
-            <option value="0" disabled selected>Selecione alguem</option>
-            <option value="pedrinsky">Pedrinsky</option>
-            <option value="gordine">Gordine</option>
-            <option value="gadac">Gadac</option>
-          </select>
-          </div>
-        <div className={"form-group"}>
-          <label htmlFor="valorPago">Valor pago:</label>
-          <input type="number" className="form-control" id="valorPago" placeholder="Valor em reais" />
-        </div>
-        <div className={"form-group"}>
-          <label htmlFor="quandoPagou">Data do pagamento:</label>
-          <input type="date" className="form-control" id="quandoPagou" />
-        </div>
-        <div className={"form-group"}>
-          <label htmlFor="porOndePagou">Forma de pagamento:</label>
-          <select className="form-control" id="porOndePagou">
-            <option value="0" disabled selected>Selecione a Forma de pagamento</option>
-            <option value="Nubank">Nubank</option>
-            <option value="Picpay">Picpay</option>
-            <option value="Bradesco">Bradesco</option>
-            <option value="Caixa">Caixa</option>
-            <option value="Dinheiro">Dinheiro</option>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="id_pessoa">Quem pagou:</label>
+          <select
+            className="form-control"
+            id="id_pessoa"
+            name="id_pessoa"
+            value={formData.id_pessoa}
+            onChange={handleChange}
+          >
+            <option value="">Selecione alguém</option>
+            {pessoas.map((pessoa) => (
+              <option key={pessoa.id} value={pessoa.id}>
+                {pessoa.nome}
+              </option>
+            ))}
           </select>
         </div>
-        <button type="submit" className={"btn"}>Adicionar Pagamento</button>
+
+        <div className="form-group">
+          <label htmlFor="valor_pago">Valor pago:</label>
+          <input
+            type="number"
+            className="form-control"
+            id="valor_pago"
+            name="valor_pago"
+            value={formData.valor_pago}
+            onChange={handleChange}
+            placeholder="Apenas numeros"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="data_recebimento">Data do pagamento:</label>
+          <input
+            type="date"
+            className="form-control"
+            id="data_recebimento"
+            name="data_recebimento"
+            value={formData.data_recebimento}
+            onChange={handleChange}
+          />
+        </div>
+
+        <button type="submit" onClick={refreshPage}>
+          Adicionar Pagamento
+        </button>
       </form>
-
-      <table>
-        <thead>
-          <tr>
-            <th style={{ width: "30%" }}>Pessoa</th>
-            <th style={{ width: "15%" }}>Total pago</th>
-            <th style={{ width: "10%" }}>Total a pagar</th>
-          </tr>
-        </thead>
-
-        <tbody>
-            <tr>
-              <td>Pedrinsky</td>
-              <td>800</td>
-              <td>200</td>
-            </tr>
-            <tr>
-              <td>Gordine</td>
-              <td>0</td>
-              <td>1000</td>
-            </tr>
-            <tr>
-              <td>Gadac</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-        </tbody>
-      </table>
     </div>
   );
 };

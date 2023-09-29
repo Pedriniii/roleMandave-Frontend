@@ -4,6 +4,7 @@
 }
 
 form {
+  margin-top: 60px;
   margin-bottom: 20px;
 }
 
@@ -73,11 +74,4 @@ th {
   color: #fff;
   font-weight: bold;
 }
-/* Adicione estas classes no seu arquivo CSS */
-.table-row-even {
-  background-color: #e4e4e4;
-}
-
-.table-row-odd {
-  background-color: transparent;
-}
+tr:nth-child(even){background-color: #FFF;}

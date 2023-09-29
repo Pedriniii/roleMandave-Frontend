@@ -6,3 +6,14 @@
 body{
   background-color: #ece7ec;
 }
+
+form button{
+  border-radius: 10px;
+  font-size: 18px;
+  color: #FFF;
+  background-color: #8e19ff;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  margin-top: 5px;
+}
