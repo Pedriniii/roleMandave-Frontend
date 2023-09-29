@@ -9,7 +9,7 @@ const MonthCalendar = () => {
     <div className="month-calendar">
       {monthNames.map((month, index) => {
         const isPastMonth = index < currentMonth;
-        const isCurrentMonth = index = currentMonth;
+        const isCurrentMonth = index === currentMonth;
         const classNames = isPastMonth ? 'month past-month' : 'month' && isCurrentMonth ? 'month current-month' : 'month';
         return (
           <div key={month} className={classNames}>
