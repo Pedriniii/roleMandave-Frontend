@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
 import './NavigationBar.css';
+import ToastManager from '../../toastManager';
 
 function NavigationBar() {
   const [activeItem, setActiveItem] = useState<string>('home'); // Inicializa com o item 'home' como ativo
@@ -12,6 +13,7 @@ function NavigationBar() {
 
   return (
     <nav className="navbar">
+      <ToastManager />
       <div
         className={`navbar-item ${activeItem === 'home' ? 'navbar-item-active' : ''}`}
         onClick={() => handleItemClick('home')}
@@ -23,6 +25,7 @@ function NavigationBar() {
         className={`navbar-item ${activeItem === 'transacao' ? 'navbar-item-active' : ''}`}
         onClick={() => handleItemClick('transacao')}
       >
+        <i className="fas fa-user"></i>
         <Link to="/transactions" className={"link"}>Transações</Link>
       </div>
       <div

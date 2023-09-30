@@ -1,8 +1,9 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './orcamentos.css';
+import ToastManager from '../../toastManager';
 
 const FormularioOrcamento: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -20,93 +21,69 @@ const FormularioOrcamento: React.FC = () => {
     });
   };
 
-  <ToastContainer
-position="top-right"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="colored"
-/>
-
-
   const successMessage = () => {
-    toast.success("Orçamento inserido com sucesso!", {
-      position: "top-center",
+    toast.success('Orçamento inserido com sucesso!', {
+      position: 'top-center',
       autoClose: 5000,
-      hideProgressBar: false,
       closeOnClick: true,
       draggable: true,
-      progress: 5000,
-      theme: "colored",
+      progress: undefined,
+      theme: 'colored',
     });
-  } 
+  };
 
   const errorMessage = () => {
-    toast.error("Erro ao cadastrar o orçamento: ", {
-      position: "top-center",
+    toast.error('Erro ao cadastrar o orçamento', {
+      position: 'top-center',
       autoClose: 5000,
-      hideProgressBar: false,
       closeOnClick: true,
       draggable: true,
-      progress: 5000,
-      theme: "colored",
+      progress: undefined,
+      theme: 'colored',
     });
-  }
-
+  };
 
   const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
     try {
       await axios.post('https://role-mandave.vercel.app/cadastrarOrcamento', formData);
-      successMessage()
+      successMessage();
     } catch (err) {
-      errorMessage()
+      errorMessage();
     }
   };
 
   return (
-    <div className={"container"}>
+    <div className="container">
       <h2>Adicionar Orçamento</h2>
-    <form onSubmit={handleSubmit}>
-      <label>
-        Descrição:
-        <input type="text" name="descricao" value={formData.descricao} onChange={handleChange} placeholder='Nome do item'/>
-      </label>
-      <label>
-        Valor:
-        <input type="text" name="valor" value={formData.valor} onChange={handleChange} placeholder='Apenas numeros'/>
-      </label>
-      <label>
-        Unidade de Medida:
-        <select name="unidade_de_medida" value={formData.unidade_de_medida} onChange={handleChange}>
-          <option value="">Selecione uma opção</option>
-          <option value="Un">Un</option>
-          <option value="Kg">Kg</option>
-          <option value="Gr">Gr</option>
-          <option value="Diaria">Diaria</option>
-        </select>
-      </label>
-      <label>
-        Qtd:
-        <input type="text" name="qtd" value={formData.qtd} onChange={handleChange} placeholder='Apenas numeros inteiros'/>
-      </label>
-      <button type="submit" onClick={successMessage}>Cadastrar</button>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Descrição:
+          <input type="text" name="descricao" value={formData.descricao} onChange={handleChange} placeholder="Nome do item" />
+        </label>
+        <label>
+          Valor:
+          <input type="text" name="valor" value={formData.valor} onChange={handleChange} placeholder="Apenas números" />
+        </label>
+        <label>
+          Unidade de Medida:
+          <select name="unidade_de_medida" value={formData.unidade_de_medida} onChange={handleChange}>
+            <option value="">Selecione uma opção</option>
+            <option value="Un">Un</option>
+            <option value="Kg">Kg</option>
+            <option value="Gr">Gr</option>
+            <option value="Diaria">Diaria</option>
+          </select>
+        </label>
+        <label>
+          Qtd:
+          <input type="text" name="qtd" value={formData.qtd} onChange={handleChange} placeholder="Apenas números inteiros" />
+        </label>
+        <button type="submit">Cadastrar</button>
+      </form>
 
-    <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        draggable
-        pauseOnHover
-        theme="colored" />      
+      <ToastManager />
     </div>
   );
 };
