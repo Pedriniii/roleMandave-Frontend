@@ -74,6 +74,8 @@ const FormularioOrcamento: React.FC = () => {
       </label>
       <button type="submit">Cadastrar</button>
     </form>
+
+    <button onClick={successMessage}>Teste</button>
     </div>
   );
 };
