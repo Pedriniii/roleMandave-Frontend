@@ -35,17 +35,20 @@ function Orcamentos() {
     setSelectOrcamento([...selectOrcamento, orcamento]);
   };
 
-  const orcamentoRows = Array.isArray(selectOrcamento) ?
-    selectOrcamento.map((orcamento: Orcamento, index: number) => (
-      <tr key={index}>
-        <td>{orcamento.descricao}</td>
-        <td>{orcamento.valor}</td>
-        <td>{orcamento.unidade_de_medida}</td>
-        <td>{orcamento.qtd}</td>
-        <td>{orcamento.total}</td>
-      </tr>
-    )) :
-    null;
+  const orcamentoRows = selectOrcamento.map((orcamento: Orcamento, index: number) => (
+    <tr key={index}>
+      <td>{orcamento.descricao}</td>
+      <td>R$ {orcamento.valor}</td>
+      <td>{orcamento.unidade_de_medida}</td>
+      <td>
+        {orcamento.unidade_de_medida === "Diaria" || orcamento.unidade_de_medida === "Un"
+          ? String(orcamento.qtd)  
+          : String(orcamento.qtd)}
+      </td>
+      <td>R$ {orcamento.total}</td>
+    </tr>
+  ));
+  
 
 
   return (
