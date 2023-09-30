@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import './transactionForm.css'
 interface TransactionFormProps {
   onTransactionAdded: () => void;
+  listaPessoas: string[];  // Adicionando a propriedade listaPessoas
 }
 
-const TransactionForm: React.FC<TransactionFormProps> = ({ onTransactionAdded }) => {
+const TransactionForm: React.FC<TransactionFormProps> = ({ onTransactionAdded, listaPessoas }) => {
   const [formData, setFormData] = useState({
     id_pessoa: '',
     valor_pago: '',
@@ -52,11 +53,9 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onTransactionAdded })
     try {
       await Axios.post('https://role-mandave.vercel.app/cadastrarRecebimento', formData);
       showSuccessToast('Recebimento cadastrado com sucesso!');
-      console.log('Recebimento cadastrado com sucesso!');
-      onTransactionAdded();  // Chama a função de atualização
+      onTransactionAdded();  
     } catch (error) {
       showErrorToast('Erro ao cadastrar o recebimento');
-      console.error('Erro ao cadastrar o recebimento:', error);
     }
   };
 
@@ -74,7 +73,11 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onTransactionAdded })
             onChange={handleChange}
           >
             <option value="">Selecione alguém</option>
-            {/* Adicione as opções com base nos dados disponíveis */}
+            {listaPessoas.map((pessoa) => (
+              <option key={pessoa} value={pessoa}>
+                {pessoa}
+              </option>
+            ))}
           </select>
         </div>
 
