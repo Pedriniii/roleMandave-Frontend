@@ -21,7 +21,6 @@ const FormularioOrcamento: React.FC = () => {
   };
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
     try {
       await axios.post('https://role-mandave.vercel.app/cadastrarOrcamento', formData);
       toast.success("Orçamento inserido com sucesso!", {
