@@ -20,7 +20,7 @@ const FormularioOrcamento: React.FC = () => {
     });
   };
 
-  const success = () => {
+  const successMessage = () => {
     toast.success("Orçamento inserido com sucesso!", {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 5000,
@@ -28,7 +28,7 @@ const FormularioOrcamento: React.FC = () => {
     });
   } 
 
-  const error = () => {
+  const errorMessage = () => {
     toast.error("Erro ao cadastrar o orçamento: ", {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 5000,
@@ -40,9 +40,9 @@ const FormularioOrcamento: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     try {
       await axios.post('https://role-mandave.vercel.app/cadastrarOrcamento', formData);
-      success()
+      successMessage()
     } catch (err) {
-      error
+      errorMessage()
     }
   };
 
