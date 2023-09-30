@@ -39,11 +39,11 @@ const FormularioOrcamento: React.FC = () => {
     <form onSubmit={handleSubmit}>
       <label>
         Descrição:
-        <input type="text" name="descricao" value={formData.descricao} onChange={handleChange} />
+        <input type="text" name="descricao" value={formData.descricao} onChange={handleChange} placeholder='Nome do item'/>
       </label>
       <label>
         Valor:
-        <input type="text" name="valor" value={formData.valor} onChange={handleChange} />
+        <input type="text" name="valor" value={formData.valor} onChange={handleChange} placeholder='Apenas numeros'/>
       </label>
       <label>
         Unidade de Medida:
@@ -57,7 +57,7 @@ const FormularioOrcamento: React.FC = () => {
       </label>
       <label>
         Qtd:
-        <input type="text" name="qtd" value={formData.qtd} onChange={handleChange} />
+        <input type="text" name="qtd" value={formData.qtd} onChange={handleChange} placeholder='Apenas numeros inteiros'/>
       </label>
       <button type="submit" onClick={refreshPage}>Cadastrar</button>
     </form>

@@ -11,6 +11,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <NavigationBar />
+        <div className='navDiv'></div>
         <Routes>
           <Route path="/" element={<InitialPage />} />
           <Route path="/transactions" element={<Transaction />} />
