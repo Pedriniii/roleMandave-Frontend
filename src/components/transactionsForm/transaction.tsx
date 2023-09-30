@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import TransactionForm from './transactionForm';
-import './transactionForm.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Recebimento {
   id: number;
@@ -12,11 +13,33 @@ interface Recebimento {
 const Transactions: React.FC = () => {
   const [selectRecebimento, setSelectRecebimento] = useState<Recebimento[]>([]);
 
-  useEffect(() => {
+  const showSuccessToast = (message: string) => {
+    toast.success(message, {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  };
+
+  const showErrorToast = (message: string) => {
+    toast.error(message, {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    });
+  };
+
+  const handleTransactionAdded = () => {
     Axios.get('https://role-mandave.vercel.app/listarRecebimentos')
       .then((response) => {
-        console.log('Resposta da requisição:', response.data);
-
         if (Array.isArray(response.data.selectRecebimento)) {
           setSelectRecebimento(response.data.selectRecebimento);
         } else {
@@ -26,7 +49,7 @@ const Transactions: React.FC = () => {
       .catch((error) => {
         console.error('Erro ao buscar os dados:', error);
       });
-  }, []);
+  };
 
   const rows = selectRecebimento.map((recebimento) => (
     <tr key={recebimento.id}>
@@ -38,24 +61,34 @@ const Transactions: React.FC = () => {
 
   return (
     <div>
-      <TransactionForm />
+      <TransactionForm onTransactionAdded={handleTransactionAdded} />
 
       <h2>Adicionar Transação</h2>
 
-      <div className={"container-table"}>
-      <table>
-        <thead>
-          <tr>
-            <th style={{ width: '30%' }}>ID Pessoa</th>
-            <th style={{ width: '15%' }}>Valor Pago</th>
-            <th style={{ width: '10%' }}>Valor Restante</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows}
-        </tbody>
-      </table>
+      <div className={'container-table'}>
+        <table>
+          <thead>
+            <tr>
+              <th style={{ width: '30%' }}>ID Pessoa</th>
+              <th style={{ width: '15%' }}>Valor Pago</th>
+              <th style={{ width: '10%' }}>Valor Restante</th>
+            </tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </table>
       </div>
+
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };
