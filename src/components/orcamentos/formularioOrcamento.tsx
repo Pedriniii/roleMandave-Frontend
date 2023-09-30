@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import axios from 'axios';
+import axios from '../../axiosConfig';
 import './orcamentos.css';
 
 const FormularioOrcamento: React.FC = () => {
@@ -22,7 +22,7 @@ const FormularioOrcamento: React.FC = () => {
     e.preventDefault();
 
     try {
-      await axios.post('https://role-mandave.vercel.app/cadastrarOrcamento', formData);
+      await axios.post('cadastrarOrcamento', formData);
       console.log('Orçamento cadastrado com sucesso!');
     } catch (error) {
       console.error('Erro ao cadastrar o orçamento:', error);
