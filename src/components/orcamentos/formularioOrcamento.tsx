@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import './orcamentos.css';
 
@@ -20,19 +20,43 @@ const FormularioOrcamento: React.FC = () => {
     });
   };
 
+  <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+/>
+
+
   const successMessage = () => {
     toast.success("Orçamento inserido com sucesso!", {
-      position: toast.POSITION.TOP_CENTER,
+      position: "top-center",
       autoClose: 5000,
-      draggable: true
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: 5000,
+      theme: "colored",
     });
   } 
 
   const errorMessage = () => {
     toast.error("Erro ao cadastrar o orçamento: ", {
-      position: toast.POSITION.TOP_CENTER,
+      position: "top-center",
       autoClose: 5000,
-      draggable: true
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: 5000,
+      theme: "colored",
     });
   }
 
@@ -76,6 +100,17 @@ const FormularioOrcamento: React.FC = () => {
     </form>
 
     <button onClick={successMessage}>Teste</button>
+    <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored" />      
     </div>
   );
 };
