@@ -35,15 +35,18 @@ function Orcamentos() {
     setSelectOrcamento([...selectOrcamento, orcamento]);
   };
 
-  const orcamentoRows = selectOrcamento.map((orcamento: Orcamento, index: number) => (
-    <tr key={index}>
-      <td>{orcamento.descricao}</td>
-      <td>{orcamento.valor}</td>
-      <td>{orcamento.total}</td>
-      <td>{orcamento.unidade_de_medida}</td>
-      <td>{orcamento.qtd}</td>
-    </tr>
-  ));
+  const orcamentoRows = Array.isArray(selectOrcamento) ?
+    selectOrcamento.map((orcamento: Orcamento, index: number) => (
+      <tr key={index}>
+        <td>{orcamento.descricao}</td>
+        <td>{orcamento.valor}</td>
+        <td>{orcamento.unidade_de_medida}</td>
+        <td>{orcamento.qtd}</td>
+        <td>{orcamento.total}</td>
+      </tr>
+    )) :
+    null;
+
 
   return (
     <div>
@@ -55,9 +58,9 @@ function Orcamentos() {
             <tr>
               <th style={{ width: "30%" }}>Descrição</th>
               <th style={{ width: "15%" }}>Preço</th>
-              <th style={{ width: "15%" }}>Total</th>
-              <th style={{ width: "10%" }}>UN</th>
+              <th style={{ width: "15%" }}>UN</th>
               <th style={{ width: "10%" }}>QTD</th>
+              <th style={{ width: "10%" }}>Total</th>
             </tr>
           </thead>
           <tbody>
