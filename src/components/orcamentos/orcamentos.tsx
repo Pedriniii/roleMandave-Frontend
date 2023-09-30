@@ -38,14 +38,14 @@ function Orcamentos() {
   const orcamentoRows = selectOrcamento.map((orcamento: Orcamento, index: number) => (
     <tr key={index}>
       <td>{orcamento.descricao}</td>
-      <td>R$ {orcamento.valor}</td>
+      <td>R${orcamento.valor}</td>
       <td>{orcamento.unidade_de_medida}</td>
       <td>
         {orcamento.unidade_de_medida === "Diaria" || orcamento.unidade_de_medida === "Un"
-          ? String(orcamento.qtd)  
+          ? Number(orcamento.qtd)  
           : String(orcamento.qtd)}
       </td>
-      <td>R$ {orcamento.total}</td>
+      <td>R${orcamento.total}</td>
     </tr>
   ));
   
@@ -61,9 +61,9 @@ function Orcamentos() {
             <tr>
               <th style={{ width: "30%" }}>Descrição</th>
               <th style={{ width: "15%" }}>Preço</th>
-              <th style={{ width: "15%" }}>UN</th>
+              <th style={{ width: "10%" }}>UN</th>
               <th style={{ width: "10%" }}>QTD</th>
-              <th style={{ width: "10%" }}>Total</th>
+              <th style={{ width: "15%" }}>Total</th>
             </tr>
           </thead>
           <tbody>
