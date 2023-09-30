@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import axios from '../../axiosConfig';
+import axios from 'axios';
 import './orcamentos.css';
 
 const FormularioOrcamento: React.FC = () => {
@@ -22,15 +22,11 @@ const FormularioOrcamento: React.FC = () => {
     e.preventDefault();
 
     try {
-      await axios.post('cadastrarOrcamento', formData);
+      await axios.post('https://role-mandave.vercel.app/cadastrarOrcamento', formData);
       console.log('Orçamento cadastrado com sucesso!');
     } catch (error) {
       console.error('Erro ao cadastrar o orçamento:', error);
     }
-  };
-
-  const refreshPage = () => {
-    window.location.reload();
   };
 
   return (
@@ -59,7 +55,7 @@ const FormularioOrcamento: React.FC = () => {
         Qtd:
         <input type="text" name="qtd" value={formData.qtd} onChange={handleChange} placeholder='Apenas numeros inteiros'/>
       </label>
-      <button type="submit" onClick={refreshPage}>Cadastrar</button>
+      <button type="submit">Cadastrar</button>
     </form>
     </div>
   );

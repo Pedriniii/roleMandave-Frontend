@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../../axiosConfig';
+import axios from 'axios';
 import './orcamentos.css'
 import FormularioOrcamento from './formularioOrcamento';
 
@@ -17,7 +17,7 @@ function Orcamentos() {
 
   useEffect(() => {
     // Faz a requisição para o servidor
-    axios.get('listarOrcamento')
+    axios.get('https://role-mandave.vercel.app/listarOrcamento')
       .then((response) => {
         console.log('Resposta da requisição:', response.data);
   
@@ -51,6 +51,7 @@ function Orcamentos() {
   return (
     <div>
       <FormularioOrcamento />
+      
       <h2>Orçamento</h2>
       <div  className={"container-table"}>
       <table>
