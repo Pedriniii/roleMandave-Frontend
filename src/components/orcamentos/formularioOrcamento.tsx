@@ -5,7 +5,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import './orcamentos.css';
 import ToastManager from '../../toastManager';
 
-const FormularioOrcamento: React.FC = () => {
+interface FormularioOrcamentoProps {
+  updateOrcamentos: (orcamento: any) => void;
+}
+
+const FormularioOrcamento: React.FC<FormularioOrcamentoProps> = ({ updateOrcamentos }) => {
   const [formData, setFormData] = useState({
     descricao: '',
     valor: '',
@@ -25,6 +29,7 @@ const FormularioOrcamento: React.FC = () => {
     toast.success('Orçamento inserido com sucesso!', {
       position: 'top-center',
       autoClose: 5000,
+      hideProgressBar: false,
       closeOnClick: true,
       draggable: true,
       progress: undefined,
@@ -36,6 +41,7 @@ const FormularioOrcamento: React.FC = () => {
     toast.error('Erro ao cadastrar o orçamento', {
       position: 'top-center',
       autoClose: 5000,
+      hideProgressBar: false,
       closeOnClick: true,
       draggable: true,
       progress: undefined,
@@ -48,6 +54,16 @@ const FormularioOrcamento: React.FC = () => {
 
     try {
       await axios.post('https://role-mandave.vercel.app/cadastrarOrcamento', formData);
+
+      updateOrcamentos(formData);
+
+      setFormData({
+        descricao: '',
+        valor: '',
+        unidade_de_medida: '',
+        qtd: '',
+      });
+
       successMessage();
     } catch (err) {
       errorMessage();
