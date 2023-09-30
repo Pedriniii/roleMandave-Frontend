@@ -40,7 +40,6 @@ theme="colored"
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
       draggable: true,
       progress: 5000,
       theme: "colored",
@@ -53,7 +52,6 @@ theme="colored"
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
       draggable: true,
       progress: 5000,
       theme: "colored",
@@ -96,10 +94,9 @@ theme="colored"
         Qtd:
         <input type="text" name="qtd" value={formData.qtd} onChange={handleChange} placeholder='Apenas numeros inteiros'/>
       </label>
-      <button type="submit">Cadastrar</button>
+      <button type="submit" onClick={successMessage}>Cadastrar</button>
     </form>
 
-    <button onClick={successMessage}>Teste</button>
     <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -107,7 +104,6 @@ theme="colored"
         newestOnTop={false}
         closeOnClick
         rtl={false}
-        pauseOnFocusLoss
         draggable
         pauseOnHover
         theme="colored" />      
