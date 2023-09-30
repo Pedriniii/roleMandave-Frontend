@@ -13,7 +13,7 @@ const Transactions: React.FC = () => {
   const [selectRecebimento, setSelectRecebimento] = useState<Recebimento[]>([]);
 
   useEffect(() => {
-    Axios.get('http://localhost:8080/listarRecebimentos')
+    Axios.get('https://role-mandave.vercel.app/listarRecebimentos')
       .then((response) => {
         console.log('Resposta da requisição:', response.data);
 

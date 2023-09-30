@@ -17,7 +17,7 @@ function Orcamentos() {
 
   useEffect(() => {
     // Faz a requisição para o servidor
-    axios.get('http://localhost:8080/listarOrcamento')
+    axios.get('https://role-mandave.vercel.app/listarOrcamento')
       .then((response) => {
         console.log('Resposta da requisição:', response.data);
   

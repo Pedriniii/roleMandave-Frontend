@@ -17,7 +17,7 @@ const TransactionForm: React.FC = () => {
   const [pessoas, setPessoas] = useState<Pessoa[]>([]);
 
   useEffect(() => {
-    Axios.get('http://localhost:8080/listarPessoas')
+    Axios.get('https://role-mandave.vercel.app/listarPessoas')
       .then((response) => {
         if (Array.isArray(response.data.selectPessoa)) {
           setPessoas(response.data.selectPessoa);
@@ -46,7 +46,7 @@ const TransactionForm: React.FC = () => {
     e.preventDefault();
 
     try {
-      await Axios.post('http://localhost:8080/cadastrarRecebimento', formData);
+      await Axios.post('https://role-mandave.vercel.app/cadastrarRecebimento', formData);
       console.log('Recebimento cadastrado com sucesso!');
     } catch (error) {
       console.error('Erro ao cadastrar o recebimento:', error);

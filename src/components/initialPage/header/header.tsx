@@ -19,7 +19,7 @@ const Header: React.FC =  () => {
     const [saldoEmConta, setSaldoEmConta] = useState<SaldoEmConta[]>([]);
 
     useEffect(() => {
-        Axios.get('http://localhost:8080/saldoEmConta')
+        Axios.get('https://role-mandave.vercel.app/saldoEmConta')
           .then((response) => {
             console.log('Resposta da requisição:', response.data);
     
@@ -41,7 +41,7 @@ const Header: React.FC =  () => {
       const [orcamentoTotal, setOrcamentoTotal] = useState<OrcamentoTotal[]>([]);
 
       useEffect(() => {
-        Axios.get('http://localhost:8080/orcamentoTotal')
+        Axios.get('https://role-mandave.vercel.app/orcamentoTotal')
           .then((response) => {
             console.log('Resposta da requisição:', response.data);
     

@@ -13,7 +13,7 @@ function Recebimentos() {
   const [extratoRecebimento, setExtratoRecebimento] = useState<ExtratoRecebimento[]>([]);
 
   useEffect(() => {
-    Axios.get('http://localhost:8080/extratoRecebimentos')
+    Axios.get('https://role-mandave.vercel.app/extratoRecebimentos')
       .then((response) => {
         if (Array.isArray(response.data.extratoRecebimento)) {
           setExtratoRecebimento(response.data.extratoRecebimento);

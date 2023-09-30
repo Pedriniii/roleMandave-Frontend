@@ -22,7 +22,7 @@ const FormularioOrcamento: React.FC = () => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:8080/cadastrarOrcamento', formData);
+      await axios.post('https://role-mandave.vercel.app/cadastrarOrcamento', formData);
       console.log('Orçamento cadastrado com sucesso!');
     } catch (error) {
       console.error('Erro ao cadastrar o orçamento:', error);
