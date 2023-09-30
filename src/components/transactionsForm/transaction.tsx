@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Axios from 'axios';
 import TransactionForm from './transactionForm';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface Recebimento {
@@ -12,30 +12,6 @@ interface Recebimento {
 
 const Transactions: React.FC = () => {
   const [selectRecebimento, setSelectRecebimento] = useState<Recebimento[]>([]);
-
-  const showSuccessToast = (message: string) => {
-    toast.success(message, {
-      position: 'top-center',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'colored',
-    });
-  };
-
-  const showErrorToast = (message: string) => {
-    toast.error(message, {
-      position: 'top-center',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'colored',
-    });
-  };
 
   const handleTransactionAdded = () => {
     Axios.get('https://role-mandave.vercel.app/listarRecebimentos')
