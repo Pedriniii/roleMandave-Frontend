@@ -18,6 +18,11 @@ const FormularioOrcamento: React.FC = () => {
     });
   };
 
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -55,7 +60,7 @@ const FormularioOrcamento: React.FC = () => {
         Qtd:
         <input type="text" name="qtd" value={formData.qtd} onChange={handleChange} placeholder='Apenas numeros inteiros'/>
       </label>
-      <button type="submit">Cadastrar</button>
+      <button type="submit" onClick={refreshPage}>Cadastrar</button>
     </form>
     </div>
   );
