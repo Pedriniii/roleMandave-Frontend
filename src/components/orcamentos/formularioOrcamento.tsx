@@ -1,5 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import './orcamentos.css';
 
 const FormularioOrcamento: React.FC = () => {
@@ -18,19 +20,20 @@ const FormularioOrcamento: React.FC = () => {
     });
   };
 
-  const refreshPage = () => {
-    window.location.reload();
-  };
-
-
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
     try {
       await axios.post('https://role-mandave.vercel.app/cadastrarOrcamento', formData);
-      console.log('Orçamento cadastrado com sucesso!');
-    } catch (error) {
-      console.error('Erro ao cadastrar o orçamento:', error);
+      toast.success("Orçamento inserido com sucesso!", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 20000,
+        draggable: true
+      });
+    } catch (err) {
+      toast.error("Erro ao cadastrar o orçamento: " + err, {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 20000,
+        draggable: true
+      });
     }
   };
 
@@ -60,7 +63,7 @@ const FormularioOrcamento: React.FC = () => {
         Qtd:
         <input type="text" name="qtd" value={formData.qtd} onChange={handleChange} placeholder='Apenas numeros inteiros'/>
       </label>
-      <button type="submit" onClick={refreshPage}>Cadastrar</button>
+      <button type="submit">Cadastrar</button>
     </form>
     </div>
   );
