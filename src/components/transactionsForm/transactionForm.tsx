@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './transactionForm.css'
 interface TransactionFormProps {
   onTransactionAdded: () => void;
-  listaPessoas: string[];  // Adicionando a propriedade listaPessoas
+  listaPessoas: { id: number; nome: string }[];
 }
 
 const TransactionForm: React.FC<TransactionFormProps> = ({ onTransactionAdded, listaPessoas }) => {
@@ -74,8 +74,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onTransactionAdded, l
           >
             <option value="">Selecione alguém</option>
             {listaPessoas.map((pessoa) => (
-              <option key={pessoa} value={pessoa}>
-                {pessoa}
+              <option key={pessoa.id} value={pessoa.id}>
+                {pessoa.nome}
               </option>
             ))}
           </select>

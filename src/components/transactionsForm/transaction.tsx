@@ -13,7 +13,7 @@ interface Recebimento {
 
 const Transactions: React.FC = () => {
   const [selectRecebimento, setSelectRecebimento] = useState<Recebimento[]>([]);
-  const [listaPessoas, setListaPessoas] = useState<string[]>([]);
+  const [listaPessoas, setListaPessoas] = useState<{ id: number; nome: string }[]>([]);
 
   useEffect(() => {
     fetchRecebimentos();
@@ -38,8 +38,11 @@ const Transactions: React.FC = () => {
     Axios.get('https://role-mandave.vercel.app/listarPessoas')
       .then((response) => {
         if (Array.isArray(response.data.selectPessoa)) {
-          const nomesPessoas = response.data.selectPessoa.map((pessoa: any) => pessoa.nome);
-          setListaPessoas(nomesPessoas);
+          const nomesEIdsPessoas = response.data.selectPessoa.map((pessoa: any) => ({
+            id: pessoa.id,
+            nome: pessoa.nome
+          }));
+          setListaPessoas(nomesEIdsPessoas);
         } else {
           console.error('Os dados recebidos não são um array:', response.data.selectPessoa);
         }
