@@ -64,7 +64,45 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onTransactionAdded })
     <div className={'container'}>
       <h2>Adicionar Transação</h2>
       <form onSubmit={handleSubmit}>
-        {/* Restante do formulário */}
+        <div className="form-group">
+          <label htmlFor="id_pessoa">Quem pagou:</label>
+          <select
+            className="form-control"
+            id="id_pessoa"
+            name="id_pessoa"
+            value={formData.id_pessoa}
+            onChange={handleChange}
+          >
+            <option value="">Selecione alguém</option>
+            {/* Adicione as opções com base nos dados disponíveis */}
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="valor_pago">Valor pago:</label>
+          <input
+            type="number"
+            className="form-control"
+            id="valor_pago"
+            name="valor_pago"
+            value={formData.valor_pago}
+            onChange={handleChange}
+            placeholder="Apenas números"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="data_recebimento">Data do pagamento:</label>
+          <input
+            type="date"
+            className="form-control"
+            id="data_recebimento"
+            name="data_recebimento"
+            value={formData.data_recebimento}
+            onChange={handleChange}
+          />
+        </div>
+
         <button type="submit">Adicionar Pagamento</button>
       </form>
     </div>
