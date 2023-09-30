@@ -51,6 +51,8 @@ function Orcamentos() {
   return (
     <div>
       <FormularioOrcamento />
+      <h2>Orçamento</h2>
+      <div  className={"container-table"}>
       <table>
         <thead>
           <tr>
@@ -65,6 +67,7 @@ function Orcamentos() {
           {orcamentoRows}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

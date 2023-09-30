@@ -39,6 +39,10 @@ const Transactions: React.FC = () => {
   return (
     <div>
       <TransactionForm />
+
+      <h2>Adicionar Transação</h2>
+
+      <div className={"container-table"}>
       <table>
         <thead>
           <tr>
@@ -51,6 +55,7 @@ const Transactions: React.FC = () => {
           {rows}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

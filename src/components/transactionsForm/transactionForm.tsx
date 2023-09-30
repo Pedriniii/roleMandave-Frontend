@@ -54,7 +54,7 @@ const TransactionForm: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className={"container"}>
       <h2>Adicionar Transação</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

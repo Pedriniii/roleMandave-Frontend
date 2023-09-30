@@ -34,7 +34,8 @@ const FormularioOrcamento: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className={"container"}>
+      <h2>Adicionar Orçamento</h2>
     <form onSubmit={handleSubmit}>
       <label>
         Descrição:

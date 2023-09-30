@@ -17,3 +17,12 @@ form button{
   padding: 10px;
   margin-top: 5px;
 }
+
+h2{
+  padding: 6px;
+}
+
+.container-table{
+  background-color: #FFF;
+  border-radius: 15px;
+}
