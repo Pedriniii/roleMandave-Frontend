@@ -72,3 +72,8 @@ th {
   font-weight: bold;
 }
 tr:nth-child(even){background-color: #FFF;}
+
+.update{
+  display: flex;
+  justify-content: space-between;
+}

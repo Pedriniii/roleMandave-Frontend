@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './orcamentos.css';
 import ToastManager from '../../toastManager';
+import { Link } from "react-router-dom";
 
 interface FormularioOrcamentoProps {
   updateOrcamentos: (orcamento: any) => void;
@@ -96,7 +97,10 @@ const FormularioOrcamento: React.FC<FormularioOrcamentoProps> = ({ updateOrcamen
           Qtd:
           <input type="text" name="qtd" value={formData.qtd} onChange={handleChange} placeholder="Apenas números inteiros" />
         </label>
-        <button type="submit">Cadastrar</button>
+        <div className={'update'}>
+          <button type="submit">Cadastrar</button>
+          <button><Link to="/budgets/update" className={"link"}>Editar</Link></button>
+        </div>
       </form>
 
       <ToastManager />

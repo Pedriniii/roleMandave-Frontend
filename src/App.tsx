@@ -6,6 +6,7 @@ import ToastManager from './toastManager';
 import InitialPage from './pages/initialPage';
 import Transaction from './pages/transactionsPage';
 import OrcamentosPage from './pages/orcamentosPage';
+import UpdateOrcamento from './pages/updateOrcamento';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<InitialPage />} />
           <Route path="/transactions" element={<Transaction />} />
           <Route path="/budgets" element={<OrcamentosPage />} />
+          <Route path="/budgets/update" element={<UpdateOrcamento />} />
         </Routes>
       </BrowserRouter>
     </div>
