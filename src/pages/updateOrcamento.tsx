@@ -15,12 +15,19 @@ const UpdateOrcamento: React.FC = () => {
     axios
       .get("https://role-mandave.vercel.app/listarOrcamento")
       .then((response) => {
-        setOrcamentoItens(response.data);
+        console.log("Dados da API:", response.data);
+  
+        if (Array.isArray(response.data)) {
+          setOrcamentoItens(response.data);
+        } else {
+          console.error("Os dados recebidos não são um array:", response.data);
+        }
       })
       .catch((error) => {
         console.error("Erro ao obter os itens do orçamento:", error);
       });
   }, []);
+  
 
   const handleEditItem = (id: number) => {
     console.log("Editar item com ID:", id);
