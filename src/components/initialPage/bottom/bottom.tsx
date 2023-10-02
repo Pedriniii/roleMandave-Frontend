@@ -9,13 +9,8 @@ interface ExtratoRecebimento {
   data_recebimento: string;
 }
 
-interface Pessoa {
-  nome: string;
-}
-
 function Recebimentos() {
   const [extratoRecebimento, setExtratoRecebimento] = useState<ExtratoRecebimento[]>([]);
-  const [pessoas, setPessoas] = useState<Pessoa[]>([]);
   const [selectedPerson, setSelectedPerson] = useState<string | null>(null);
 
   useEffect(() => {
@@ -29,18 +24,6 @@ function Recebimentos() {
       })
       .catch((error) => {
         console.error('Erro ao buscar os dados:', error);
-      });
-
-    Axios.get('https://role-mandave.vercel.app/listarPessoas')
-      .then((response) => {
-        if (Array.isArray(response.data.selectPessoa)) {
-          setPessoas(response.data.selectPessoa);
-        } else {
-          console.error('Os dados recebidos não são um array:', response.data.selectPessoa);
-        }
-      })
-      .catch((error) => {
-        console.error('Erro ao buscar os dados das pessoas:', error);
       });
   }, []);
 
@@ -60,8 +43,8 @@ function Recebimentos() {
       <div>
         <select onChange={(e) => handlePersonFilter(e.target.value)}>
           <option value="">Mostrar Todos</option>
-          {pessoas.map((pessoa, index) => (
-            <option key={index} value={pessoa.nome}>{pessoa.nome}</option>
+          {filteredItems.map((item, index) => (
+            <option key={index} value={item.nome}>{item.nome}</option>
           ))}
         </select>
       </div>
