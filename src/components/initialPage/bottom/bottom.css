@@ -27,11 +27,11 @@
   display: inline-block;
   width: auto;
   font-size: 18px;
-  color: #bd24ff;
+  /* color: #bd24ff; */
   font-weight: 200;
   height: 30px;
   border: none;
-  /* background-color: #e4e4e4; */
+  background-color: #FFF;
   margin-left: 3px;
   border-radius: 10px;
 }
@@ -43,8 +43,9 @@
 .orderBy span {
     display: inline-block;
     width: auto;
+    margin-left: 15px;
     font-size: 18px;
-    color: #bd24ff;
+    /* color: #bd24ff; */
     font-weight: 600;
     height: 30px;
     border: none;
