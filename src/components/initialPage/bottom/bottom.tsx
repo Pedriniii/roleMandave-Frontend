@@ -30,7 +30,7 @@ function Recebimentos() {
 
   useEffect(() => {
     const uniqueNamesSet = new Set(extratoRecebimento.map(item => item.nome));
-    const uniqueNamesArray = Array.from(uniqueNamesSet);
+    const uniqueNamesArray = Array.from(uniqueNamesSet).sort((a, b) => a.localeCompare(b));
     setUniqueNames(uniqueNamesArray);
   }, [extratoRecebimento]);
 
@@ -48,7 +48,6 @@ function Recebimentos() {
   return (
     <div className={'bottomMain'}>
       <div className={'orderBy'}>
-        <span>Mostrar apenas: </span>
         <select onChange={(e) => handlePersonFilter(e.target.value)}>
           <option value="">Mostrar Todos</option>
           {uniqueNames.map((name, index) => (
