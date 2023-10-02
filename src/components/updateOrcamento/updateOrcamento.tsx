@@ -4,8 +4,8 @@ import axios from "axios";
 interface OrcamentoItem {
   id: number;
   descricao: string;
-  preco: number;
-  quantidade: number;
+  total: number;
+  qtd: number;
 }
 
 const UpdateOrcamento: React.FC = () => {
@@ -55,18 +55,18 @@ const UpdateOrcamento: React.FC = () => {
             {orcamentoItens.map((item) => (
               <tr key={item.id}>
                 <td>{item.descricao}</td>
-                <td>{item.preco}</td>
-                <td>{item.quantidade}</td>
+                <td>{item.total}</td>
+                <td>{item.qtd}</td>
                 <td>
                   <button onClick={() => handleEditItem(item.id)}>
-                    <span role="img" aria-label="Editar">
+                    <span aria-label="Editar">
                       ✏️
                     </span>
                   </button>
                 </td>
                 <td>
                   <button onClick={() => handleDeleteItem(item.id)}>
-                    <span role="img" aria-label="Excluir">
+                    <span aria-label="Excluir">
                       🗑️
                     </span>
                   </button>
