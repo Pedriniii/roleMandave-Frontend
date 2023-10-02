@@ -9,8 +9,15 @@ interface ExtratoRecebimento {
   data_recebimento: string;
 }
 
+interface Pessoa {
+  nome: string;
+}
+
 function Recebimentos() {
   const [extratoRecebimento, setExtratoRecebimento] = useState<ExtratoRecebimento[]>([]);
+  const [pessoas, setPessoas] = useState<Pessoa[]>([]);
+  const [sortBy, setSortBy] = useState<string | null>(null);
+  const [selectedPerson, setSelectedPerson] = useState<string | null>(null);
 
   useEffect(() => {
     Axios.get('https://role-mandave.vercel.app/extratoRecebimentos')
@@ -24,6 +31,18 @@ function Recebimentos() {
       .catch((error) => {
         console.error('Erro ao buscar os dados:', error);
       });
+
+    Axios.get('https://role-mandave.vercel.app/listarPessoas')
+      .then((response) => {
+        if (Array.isArray(response.data.pessoas)) {
+          setPessoas(response.data.pessoas);
+        } else {
+          console.error('Os dados recebidos não são um array:', response.data.pessoas);
+        }
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar os dados das pessoas:', error);
+      });
   }, []);
 
   const formatDate = (date: string) => {
@@ -31,14 +50,45 @@ function Recebimentos() {
     return formattedDate;
   };
 
+  const handleSortBy = (criteria: string) => {
+    setSortBy(criteria);
+  };
+
+  const handlePersonFilter = (person: string) => {
+    setSelectedPerson(person);
+  };
+
+  const filteredItems = extratoRecebimento.filter(item => !selectedPerson || item.nome === selectedPerson);
+
+  if (sortBy) {
+    filteredItems.sort((a, b) => {
+      if (sortBy === 'date') {
+        return new Date(a.data_recebimento).getTime() - new Date(b.data_recebimento).getTime();
+      } else if (sortBy === 'name') {
+        return a.nome.localeCompare(b.nome);
+      }
+      return 0;
+    });
+  }
+
   return (
     <div className={'bottomMain'}>
-      {extratoRecebimento.map((item, index) => (
+      <div>
+        <button onClick={() => handleSortBy('date')}>Ordenar por Data de Pagamento</button>
+        <button onClick={() => handleSortBy('name')}>Ordenar por Pessoa</button>
+        <select onChange={(e) => handlePersonFilter(e.target.value)}>
+          <option value="">Mostrar Todos</option>
+          {pessoas.map((pessoa, index) => (
+            <option key={index} value={pessoa.nome}>{pessoa.nome}</option>
+          ))}
+        </select>
+      </div>
+
+      {filteredItems.map((item, index) => (
         <div key={index} className={'containerPaymants'}>
           <div className={'paymants'}>
             <span>🤑 - </span>
             <div>
-              {/* <span>Pagamento recebido - </span> */}
               <span><strong>{item.nome}</strong></span>
               <p>R$ {item.valor_pago}</p>
             </div>
