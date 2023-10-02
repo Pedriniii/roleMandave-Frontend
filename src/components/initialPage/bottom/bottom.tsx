@@ -47,7 +47,8 @@ function Recebimentos() {
 
   return (
     <div className={'bottomMain'}>
-      <div>
+      <div className={'orderBy'}>
+        <span>Mostrar apenas: </span>
         <select onChange={(e) => handlePersonFilter(e.target.value)}>
           <option value="">Mostrar Todos</option>
           {uniqueNames.map((name, index) => (

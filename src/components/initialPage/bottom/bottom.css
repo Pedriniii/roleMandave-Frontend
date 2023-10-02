@@ -1,24 +1,52 @@
-.bottomMain{
-    display: flex;
-    flex-direction: column;
-    background-color: #FFF;
-    border-radius: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+.bottomMain {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-.containerPaymants{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 10px;
-    border-bottom: dotted 1px #bebebe;
+.containerPaymants {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+  border-bottom: dotted 1px #bebebe;
 }
 
-.paymants{
-    display: flex;
-    align-items: center;
+.paymants {
+  display: flex;
+  align-items: center;
 }
 
-.paymants div p{
-    color: #25c47a;
+.paymants div p {
+  color: #25c47a;
 }
+
+.bottomMain select {
+  display: inline-block;
+  width: auto;
+  font-size: 18px;
+  color: #bd24ff;
+  font-weight: 200;
+  height: 30px;
+  border: none;
+  /* background-color: #e4e4e4; */
+  margin-left: 3px;
+  border-radius: 10px;
+}
+
+.bottomMain select:focus {
+  outline: none;
+}
+
+.orderBy span {
+    display: inline-block;
+    width: auto;
+    font-size: 18px;
+    color: #bd24ff;
+    font-weight: 600;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+  }
