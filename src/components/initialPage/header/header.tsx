@@ -76,7 +76,7 @@ const Header: React.FC =  () => {
                 <span>💰</span>
                 <div className={"align"}>
                     <span>Orçamento</span>
-                    <p>R$ {orcamento}</p>
+                    <p>{orcamento}</p>
                 </div>
             </div>
 
