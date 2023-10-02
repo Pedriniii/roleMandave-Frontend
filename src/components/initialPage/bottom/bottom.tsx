@@ -11,6 +11,7 @@ interface ExtratoRecebimento {
 
 function Recebimentos() {
   const [extratoRecebimento, setExtratoRecebimento] = useState<ExtratoRecebimento[]>([]);
+  const [uniqueNames, setUniqueNames] = useState<string[]>([]);
   const [selectedPerson, setSelectedPerson] = useState<string | null>(null);
 
   useEffect(() => {
@@ -26,6 +27,12 @@ function Recebimentos() {
         console.error('Erro ao buscar os dados:', error);
       });
   }, []);
+
+  useEffect(() => {
+    const uniqueNamesSet = new Set(extratoRecebimento.map(item => item.nome));
+    const uniqueNamesArray = Array.from(uniqueNamesSet);
+    setUniqueNames(uniqueNamesArray);
+  }, [extratoRecebimento]);
 
   const formatDate = (date: string) => {
     const formattedDate = format(new Date(date), 'dd/MM/yyyy');
@@ -43,8 +50,8 @@ function Recebimentos() {
       <div>
         <select onChange={(e) => handlePersonFilter(e.target.value)}>
           <option value="">Mostrar Todos</option>
-          {filteredItems.map((item, index) => (
-            <option key={index} value={item.nome}>{item.nome}</option>
+          {uniqueNames.map((name, index) => (
+            <option key={index} value={name}>{name}</option>
           ))}
         </select>
       </div>
