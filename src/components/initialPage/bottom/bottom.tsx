@@ -16,7 +16,6 @@ interface Pessoa {
 function Recebimentos() {
   const [extratoRecebimento, setExtratoRecebimento] = useState<ExtratoRecebimento[]>([]);
   const [pessoas, setPessoas] = useState<Pessoa[]>([]);
-  const [sortBy, setSortBy] = useState<string | null>(null);
   const [selectedPerson, setSelectedPerson] = useState<string | null>(null);
 
   useEffect(() => {
@@ -50,33 +49,15 @@ function Recebimentos() {
     return formattedDate;
   };
 
-  const handleSortBy = (criteria: string) => {
-    setSortBy(criteria);
-  };
-
   const handlePersonFilter = (person: string) => {
     setSelectedPerson(person);
   };
 
   const filteredItems = extratoRecebimento.filter(item => !selectedPerson || item.nome === selectedPerson);
 
-  if (sortBy) {
-    filteredItems.sort((a, b) => {
-      if (sortBy === 'date') {
-        // Ordenação descendente por data
-        return new Date(b.data_recebimento).getTime() - new Date(a.data_recebimento).getTime();
-      } else if (sortBy === 'name') {
-        return a.nome.localeCompare(b.nome);
-      }
-      return 0;
-    });
-  }
-
   return (
     <div className={'bottomMain'}>
       <div>
-        <button onClick={() => handleSortBy('date')}>Ordenar por Data de Pagamento (Desc)</button>
-        <button onClick={() => handleSortBy('name')}>Ordenar por Pessoa</button>
         <select onChange={(e) => handlePersonFilter(e.target.value)}>
           <option value="">Mostrar Todos</option>
           {pessoas.map((pessoa, index) => (
