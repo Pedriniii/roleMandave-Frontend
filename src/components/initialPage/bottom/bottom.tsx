@@ -22,10 +22,10 @@ function Recebimentos() {
   useEffect(() => {
     Axios.get('https://role-mandave.vercel.app/extratoRecebimentos')
       .then((response) => {
-        if (Array.isArray(response.data)) {
-          setExtratoRecebimento(response.data);
+        if (Array.isArray(response.data.extratoRecebimento)) {
+          setExtratoRecebimento(response.data.extratoRecebimento);
         } else {
-          console.error('Os dados recebidos não são um array:', response.data);
+          console.error('Os dados recebidos não são um array:', response.data.extratoRecebimento);
         }
       })
       .catch((error) => {
@@ -34,10 +34,10 @@ function Recebimentos() {
 
     Axios.get('https://role-mandave.vercel.app/listarPessoas')
       .then((response) => {
-        if (Array.isArray(response.data)) {
-          setPessoas(response.data);
+        if (Array.isArray(response.data.selectPessoa)) {
+          setPessoas(response.data.selectPessoa);
         } else {
-          console.error('Os dados recebidos não são um array:', response.data);
+          console.error('Os dados recebidos não são um array:', response.data.selectPessoa);
         }
       })
       .catch((error) => {
