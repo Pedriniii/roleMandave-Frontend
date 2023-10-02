@@ -33,7 +33,7 @@ const FormularioOrcamento: React.FC<FormularioOrcamentoProps> = ({ updateOrcamen
       closeOnClick: true,
       draggable: true,
       progress: undefined,
-      theme: 'colored',
+     theme: "dark",
     });
   };
 
@@ -45,7 +45,7 @@ const FormularioOrcamento: React.FC<FormularioOrcamentoProps> = ({ updateOrcamen
       closeOnClick: true,
       draggable: true,
       progress: undefined,
-      theme: 'colored',
+     theme: "dark",
     });
   };
 

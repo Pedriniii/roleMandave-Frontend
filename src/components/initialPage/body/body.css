@@ -1,24 +1,29 @@
 .month-calendar {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+  grid-template-rows: repeat(4, 1fr); /* 4 linhas */
+  gap: 10px; /* Espaço entre os meses */
   background-color: #FFF;
   border-radius: 15px;
-  padding: 30px;
+  padding: 10px;
+  margin: 0 auto; /* Centralizar */
 }
 
 .month {
+  box-sizing: border-box;
+  text-align: center;
   padding: 10px;
-  margin: 10px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
+  border-radius: 15px; /* Bordas arredondadas */
+  border: solid 1px #3b3b3b; /* Estilo da borda */
 }
+
 
 .past-month {
   color: #ccc;
-  background-color: #ff0000cc; /* Estilo para os meses passados */
+  background-color: #3b3b3b; /* Estilo para os meses passados */
 }
 
 .current-month{
   color: #000000;
-  background-color: #00ff55cc; /* Estilo para os meses passados */
+  background-color: #ffcd24; /* Estilo para os meses passados */
 }

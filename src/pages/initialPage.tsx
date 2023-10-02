@@ -7,11 +7,11 @@ function InitialPage() {
     <div>
       <Header />
       <br /><br />
-      <h3>Despesas por categoria</h3>
+      <h3>Atividade de pagamentos</h3>
       <br />
       <Body />
       <br /><br />
-      <h3>Recebimentos</h3>
+      <h3>Extrato</h3>
       <br />
       <Recebimentos />
     </div>

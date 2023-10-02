@@ -1,8 +1,6 @@
 import  './header.css'
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import { getMonth, format } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
 
 interface SaldoEmConta{
     id: number;
@@ -65,16 +63,9 @@ const Header: React.FC =  () => {
       
       const aReceber = orcamentoTotalSum - saldoEmContaSum;
 
-    const currentMonth = getMonth(new Date());
-    let monthName = format(new Date(0, currentMonth), 'MMMM', { locale: ptBR });
-
-    
-    monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
 
     return(
     <div className={"headerMain"}>
-        <h3 className={"mesAtual"}>{monthName}</h3>
-
         <div className={"saldoAtual"}>
             <p>Saldo em conta</p>
             {saldoTotal}
@@ -82,15 +73,15 @@ const Header: React.FC =  () => {
 
         <div className={"despesasReceitas"}>
             <div className={"containerReceitas"}>
-                <span>👍</span>
+                <span>💰</span>
                 <div className={"align"}>
                     <span>Orçamento</span>
-                    {orcamento}
+                    <p>R$ {orcamento}</p>
                 </div>
             </div>
 
             <div className={"containerReceitas"}>
-                <span>😢</span>
+                <span>💸</span>
                 <div className={"align"}>
                     <span>A receber</span>
                     <p>R$ {aReceber}</p>

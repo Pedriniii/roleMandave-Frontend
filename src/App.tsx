@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import NavigationBar from './components/navBar/navBar';
+import ToastManager from './toastManager';
 import InitialPage from './pages/initialPage';
 import Transaction from './pages/transactionsPage';
 import OrcamentosPage from './pages/orcamentosPage';
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <NavigationBar />
         <div className='navDiv'></div>
+        <ToastManager />
         <Routes>
           <Route path="/" element={<InitialPage />} />
           <Route path="/transactions" element={<Transaction />} />

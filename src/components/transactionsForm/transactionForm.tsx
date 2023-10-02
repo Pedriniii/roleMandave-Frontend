@@ -23,7 +23,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onTransactionAdded, l
       closeOnClick: true,
       draggable: true,
       progress: undefined,
-      theme: 'colored',
+     theme: "dark",
     });
   };
 
@@ -35,7 +35,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onTransactionAdded, l
       closeOnClick: true,
       draggable: true,
       progress: undefined,
-      theme: 'colored',
+     theme: "dark",
     });
   };
 

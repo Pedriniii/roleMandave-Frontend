@@ -48,8 +48,9 @@ function Recebimentos() {
   return (
     <div className={'bottomMain'}>
       <div className={'orderBy'}>
+        <span>Mostrar apenas: </span>
         <select onChange={(e) => handlePersonFilter(e.target.value)}>
-          <option value="">Mostrar Todos</option>
+          <option value="">Todo mundo</option>
           {uniqueNames.map((name, index) => (
             <option key={index} value={name}>{name}</option>
           ))}
@@ -59,7 +60,7 @@ function Recebimentos() {
       {filteredItems.map((item, index) => (
         <div key={index} className={'containerPaymants'}>
           <div className={'paymants'}>
-            <span>🤑 - </span>
+            <span>📜 - </span>
             <div>
               <span><strong>{item.nome}</strong></span>
               <p>R$ {item.valor_pago}</p>
