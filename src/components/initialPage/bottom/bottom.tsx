@@ -22,10 +22,10 @@ function Recebimentos() {
   useEffect(() => {
     Axios.get('https://role-mandave.vercel.app/extratoRecebimentos')
       .then((response) => {
-        if (Array.isArray(response.data.extratoRecebimento)) {
-          setExtratoRecebimento(response.data.extratoRecebimento);
+        if (Array.isArray(response.data)) {
+          setExtratoRecebimento(response.data);
         } else {
-          console.error('Os dados recebidos não são um array:', response.data.extratoRecebimento);
+          console.error('Os dados recebidos não são um array:', response.data);
         }
       })
       .catch((error) => {
@@ -34,10 +34,10 @@ function Recebimentos() {
 
     Axios.get('https://role-mandave.vercel.app/listarPessoas')
       .then((response) => {
-        if (Array.isArray(response.data.pessoas)) {
-          setPessoas(response.data.pessoas);
+        if (Array.isArray(response.data)) {
+          setPessoas(response.data);
         } else {
-          console.error('Os dados recebidos não são um array:', response.data.pessoas);
+          console.error('Os dados recebidos não são um array:', response.data);
         }
       })
       .catch((error) => {
@@ -63,7 +63,8 @@ function Recebimentos() {
   if (sortBy) {
     filteredItems.sort((a, b) => {
       if (sortBy === 'date') {
-        return new Date(a.data_recebimento).getTime() - new Date(b.data_recebimento).getTime();
+        // Ordenação descendente por data
+        return new Date(b.data_recebimento).getTime() - new Date(a.data_recebimento).getTime();
       } else if (sortBy === 'name') {
         return a.nome.localeCompare(b.nome);
       }
@@ -74,7 +75,7 @@ function Recebimentos() {
   return (
     <div className={'bottomMain'}>
       <div>
-        <button onClick={() => handleSortBy('date')}>Ordenar por Data de Pagamento</button>
+        <button onClick={() => handleSortBy('date')}>Ordenar por Data de Pagamento (Desc)</button>
         <button onClick={() => handleSortBy('name')}>Ordenar por Pessoa</button>
         <select onChange={(e) => handlePersonFilter(e.target.value)}>
           <option value="">Mostrar Todos</option>
