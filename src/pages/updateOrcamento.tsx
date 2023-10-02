@@ -17,8 +17,8 @@ const UpdateOrcamento: React.FC = () => {
       .then((response) => {
         console.log("Dados da API:", response.data);
   
-        if (Array.isArray(response.data)) {
-          setOrcamentoItens(response.data);
+        if (Array.isArray(response.data.selectOrcamento)) {
+          setOrcamentoItens(response.data.selectOrcamento);
         } else {
           console.error("Os dados recebidos não são um array:", response.data);
         }
