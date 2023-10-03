@@ -4,8 +4,9 @@ import axios from "axios";
 interface OrcamentoItem {
   id: number;
   descricao: string;
-  total: number;
+  valor: number;
   qtd: number;
+  unidade_de_medida: string;
 }
 
 const UpdateOrcamento: React.FC = () => {
@@ -16,7 +17,7 @@ const UpdateOrcamento: React.FC = () => {
       .get("https://role-mandave.vercel.app/listarOrcamento")
       .then((response) => {
         console.log("Dados da API:", response.data);
-  
+
         if (Array.isArray(response.data.selectOrcamento)) {
           setOrcamentoItens(response.data.selectOrcamento);
         } else {
@@ -27,7 +28,6 @@ const UpdateOrcamento: React.FC = () => {
         console.error("Erro ao obter os itens do orçamento:", error);
       });
   }, []);
-  
 
   const handleEditItem = (id: number) => {
     console.log("Editar item com ID:", id);
@@ -55,17 +55,19 @@ const UpdateOrcamento: React.FC = () => {
             {orcamentoItens.map((item) => (
               <tr key={item.id}>
                 <td>{item.descricao}</td>
-                <td>{item.total}</td>
-                <td>{item.qtd}</td>
+                <td>{item.valor}</td>
+                {/* <td>{item.qtd}</td> */}
                 <td>
-                  <button onClick={() => handleEditItem(item.id)}>
-                      ✏️
-                  </button>
+                  {item.unidade_de_medida === "Diaria" ||
+                  item.unidade_de_medida === "Un"
+                    ? Number(item.qtd)
+                    : String(item.qtd)}
                 </td>
                 <td>
-                  <button onClick={() => handleDeleteItem(item.id)}>
-                      🗑️
-                  </button>
+                  <button onClick={() => handleEditItem(item.id)}>✏️</button>
+                </td>
+                <td>
+                  <button onClick={() => handleDeleteItem(item.id)}>🗑️</button>
                 </td>
               </tr>
             ))}
