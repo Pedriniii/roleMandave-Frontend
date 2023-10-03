@@ -38,11 +38,14 @@ const Login: React.FC = () => {
         password,
       });
 
-      console.log('Login successful:', response.data);
+      if (response.data == "error"){
+        errorMessage();
+      }else{
+        <Navigate to="/initialPage" />;
+      }
 
-      <Navigate to="/initialPage" />;
     } catch (error) {
-      errorMessage();
+      console.log("caiu no catch")
     }
   };
 
