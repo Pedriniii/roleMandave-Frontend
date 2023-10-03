@@ -38,10 +38,10 @@ const Login: React.FC = () => {
         password,
       });
 
-      if (response.data == "error"){
+      if (response.data === "error"){
         errorMessage();
       }else{
-        <Navigate to="/initialPage" />;
+        return <Navigate to="/initialPage" />;
       }
 
     } catch (error) {
