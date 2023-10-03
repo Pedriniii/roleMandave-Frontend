@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface OrcamentoItem {
   id: number;
@@ -11,6 +12,7 @@ interface OrcamentoItem {
 
 const UpdateOrcamento: React.FC = () => {
   const [orcamentoItens, setOrcamentoItens] = useState<OrcamentoItem[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -30,7 +32,7 @@ const UpdateOrcamento: React.FC = () => {
   }, []);
 
   const handleEditItem = (id: number) => {
-    console.log("Editar item com ID:", id);
+    navigate(`/readOrcamento/${id}`)
   };
 
   const handleDeleteItem = (id: number) => {
