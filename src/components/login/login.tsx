@@ -39,10 +39,9 @@ const Login: React.FC = () => {
         password,
       });
 
-      if (response.data === "error"){
+      if (response.data.error){
         errorMessage();
       } else {
-        // Redirect to "/initialPage" upon successful login
         navigate('/initialPage');
       }
     } catch (error) {
