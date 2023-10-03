@@ -59,16 +59,12 @@ const UpdateOrcamento: React.FC = () => {
                 <td>{item.qtd}</td>
                 <td>
                   <button onClick={() => handleEditItem(item.id)}>
-                    <span aria-label="Editar">
                       ✏️
-                    </span>
                   </button>
                 </td>
                 <td>
                   <button onClick={() => handleDeleteItem(item.id)}>
-                    <span aria-label="Excluir">
                       🗑️
-                    </span>
                   </button>
                 </td>
               </tr>
