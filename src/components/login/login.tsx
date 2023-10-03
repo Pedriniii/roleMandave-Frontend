@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import './login.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+// import { useNavigate } from 'react-router-dom';
+// import { toast } from 'react-toastify';
 
 const Login: React.FC = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const errorMessage = () => {
-    toast.error('Usuário ou senha incorretos', {
-      position: 'top-center',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'dark',
-    });
-  };
+  // const errorMessage = () => {
+  //   toast.error('Usuário ou senha incorretos', {
+  //     position: 'top-center',
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: 'dark',
+  //   });
+  // };
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value); // Change apelido to email
@@ -34,18 +34,16 @@ const Login: React.FC = () => {
 
     try {
       const response = await axios.post('https://role-mandave.vercel.app/loginAuth', {
-        email, 
+        email,
         password,
       });
-
-      if (response.data.error){
-        errorMessage();
-        console.log(response.data.error)
-      } else {
-        navigate('/initialPage');
-      }
+    
+      console.log('Resposta:', response.data);
+    
+     
     } catch (error) {
-      console.log("caiu no catch");
+      console.error('Erro ao fazer a requisição:', error);
+    
     }
   };
 
