@@ -3,7 +3,6 @@ import './login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import ToastManager from '../../toastManager';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -41,6 +40,7 @@ const Login: React.FC = () => {
 
       if (response.data.error){
         errorMessage();
+        console.log(response.data.error)
       } else {
         navigate('/initialPage');
       }
@@ -72,7 +72,6 @@ const Login: React.FC = () => {
           <input type="submit" className={'submitBtn'} value="Log in" />
         </div>
       </form>
-      <ToastManager />
     </div>
   );
 };
