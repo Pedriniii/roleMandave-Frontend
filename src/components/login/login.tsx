@@ -8,7 +8,6 @@ import ToastManager from '../../toastManager';
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false);
 
   const errorMessage = () => {
     toast.error('Usuário ou senha incorretos', {
@@ -41,15 +40,11 @@ const Login: React.FC = () => {
 
       console.log('Login successful:', response.data);
 
-      setLoggedIn(true);
+      <Navigate to="/initialPage" />;
     } catch (error) {
       errorMessage();
     }
   };
-
-  if (loggedIn) {
-    return <Navigate to="/initialPage" />;
-  }
 
   return (
     <div className={'logArea'}>

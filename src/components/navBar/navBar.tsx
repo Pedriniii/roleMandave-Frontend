@@ -17,7 +17,7 @@ function NavigationBar() {
         onClick={() => handleItemClick('home')}
       >
         <i className="fas fa-home"></i>
-        <Link to="/" className={"link"}>Inicio</Link>
+        <Link to="/initialPage" className={"link"}>Inicio</Link>
       </div>
       <div
         className={`navbar-item ${activeItem === 'transacao' ? 'navbar-item-active' : ''}`}
