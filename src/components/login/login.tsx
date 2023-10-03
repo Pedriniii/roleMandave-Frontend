@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './login.css';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import ToastManager from '../../toastManager';
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -40,12 +41,12 @@ const Login: React.FC = () => {
 
       if (response.data === "error"){
         errorMessage();
-      }else{
-        return <Navigate to="/initialPage" />;
+      } else {
+        // Redirect to "/initialPage" upon successful login
+        navigate('/initialPage');
       }
-
     } catch (error) {
-      console.log("caiu no catch")
+      console.log("caiu no catch");
     }
   };
 
